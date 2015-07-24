@@ -4,15 +4,16 @@ import json
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-def geocoding():
+def geocoding(address):
     url = urllib.urlopen(
         "http://maps.google.com/maps/api/geocode/json?%s" %
         urllib.urlencode(
-            {"address":sys.argv[1].encode("utf-8"),
+            {"address":address,
              "sensor":"false"
              })
         )
     result = json.loads(url.read())
-    print result["results"][0]["geometry"]["location"]
+    return result["results"][0]["geometry"]["location"]
+
 if "__main__" == __name__:
-    geocoding()
+    print geocoding(sys.argv[1].encode("utf-8"))
