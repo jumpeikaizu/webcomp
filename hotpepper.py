@@ -34,10 +34,11 @@ def hotpepper(location):
         if result["results"]["results_available"]>0:
             break
         
-    print food    
+    #print food    
     shop = result["results"]["shop"][0]
-    print shop["name"]
-    print shop["urls"]["pc"]
+    return shop
+    #print shop["name"]
+    #print shop["urls"]["pc"]
     #print result       
     
 if "__main__" == __name__:
