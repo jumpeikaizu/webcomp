@@ -20,6 +20,9 @@ def index():
 @app.route('/post', methods=["POST"])
 def post():
     form = addressform(request.form)
+    #if request.method == 'POST' and form.validate():
+    #    return redirect(url_for('post')
+                        
     shop = hotpepper(geocoding(form.address.data))
     return render_template('index.html',form=form,shop=shop,flag=1)
 
