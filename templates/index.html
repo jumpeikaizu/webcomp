@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+  <title>webcomp</title>
+</head>
+<body>
+  <form action="/post", method="post">
+	{{ form.address }}
+	<input type="submit">
+  </form>
+  {% if flag %}
+  <a href="{{shop['urls']['pc']}}"> {{ shop["name"] }} </a>
+  {% endif %}
+</body>
+  
