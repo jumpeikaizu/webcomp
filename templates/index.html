@@ -3,12 +3,20 @@
   <title>webcomp</title>
 </head>
 <body>
+  地名を入力してください</br>
   <form action="/post", method="post">
 	{{ form.address }}
 	<input type="submit">
   </form>
-  {% if flag %}
-  <a href="{{shop['urls']['pc']}}"> {{ shop["name"] }} </a>
+  {% if shop %}
+    {{address}}で{{food}}はどうでしょう</br>
+    <a href="{{shop['urls']['pc']}}"> {{ shop["name"] }} </a> </br>
+    <img src="{{shop['photo']['pc']['l']}}", alt="shop_photo">
   {% endif %}
+  {% if address == 0 %}
+	<script>
+	  alert("エラー")
+	</script>
+  {% endif %}	
 </body>
   

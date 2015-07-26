@@ -23,10 +23,11 @@ def hotpepper(location):
             "http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?%s"%
             urllib.urlencode(
                 {"key":"697e60c662db1c19",
-                 #"address":address,
+                 #"address":location,
                  "lat":location["lat"],
                  "lng":location["lng"],
                  "food":food_code,#R001~R064
+                 "count":100,
                  "format":"json"
                 })
         )
@@ -34,12 +35,14 @@ def hotpepper(location):
         if result["results"]["results_available"]>0:
             break
         
-    #print food    
-    shop = result["results"]["shop"][0]
-    return shop
-    #print shop["name"]
-    #print shop["urls"]["pc"]
-    #print result       
+    num = random.randint(0, int(result["results"]["results_returned"])-1)
+    shop = result["results"]["shop"][num]
+    return (food,shop)
     
 if "__main__" == __name__:
-    hotpepper(sys.argv[1].encode("utf-8"))
+    food,shop = hotpepper(sys.argv[1].encode("utf-8"))
+    print food
+    print shop["name"]
+    print shop["urls"]["pc"]
+    #print shop       
+    

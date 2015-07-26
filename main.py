@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 import sys
-from flask import Flask, redirect, request, render_template, url_for
-from wtforms import Form, StringField
-from wtforms.validators import DataRequired
+from flask import Flask, redirect, request, render_template
+from wtforms import Form, TextField
+from wtforms.validators import Required
 from hotpepper import hotpepper
 from geocoding import geocoding
 reload(sys)
@@ -10,22 +11,26 @@ sys.setdefaultencoding("utf-8")
 app = Flask(__name__)
 
 class addressform(Form):
-    address = StringField('input_address', validators=[DataRequired()])
+    address = TextField('input_address', validators=[Required()])
 
 @app.route('/')
 def index():
     form = addressform()
-    return render_template('index.html',form=form,flag=0) 
+    return render_template('index.html',form=form,shop=0) 
 
 @app.route('/post', methods=["POST"])
 def post():
     form = addressform(request.form)
-    #if request.method == 'POST' and form.validate():
-    #    return redirect(url_for('post')
-                        
-    shop = hotpepper(geocoding(form.address.data))
-    return render_template('index.html',form=form,shop=shop,flag=1)
-
+    latlng = geocoding(form.address.data)
+    if request.method == 'POST' and form.validate() and latlng!=0:
+        food,shop = hotpepper(latlng)
+        address = form.address.data
+        form = addressform()
+        return render_template('index.html',form=form,address=address,food=food,shop=shop)
+    else:
+        form=addressform()
+        return render_template('index.html',form=form,shop=0,address=0)
+        
 def main(address):
     hotpepper(geocoding(address))
 
