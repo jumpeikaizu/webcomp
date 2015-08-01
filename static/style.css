@@ -1,0 +1,22 @@
+body{
+	text-align:center;
+	background-color:aliceblue;
+	font-size:18pt;
+	/* font-family:monospace; */
+}
+
+#head{
+	background-color:lavenderblush;
+	margin:0px;
+}
+
+input{
+	font-size:70%;
+}
+
+img{
+	/* transform:scale(1.3,1.3); */
+	width:350px;
+	height:auto;
+	-ms-interpolation-mode: bicubic;
+}

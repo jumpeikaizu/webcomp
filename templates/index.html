@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <head>
   <title>webcomp</title>
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  <div id="head">
   地名を入力してください</br>
   <form action="/post", method="post">
 	{{ form.address }}
 	<input type="submit">
   </form>
+  </div>
+  </br>
   {% if shop %}
     {{address}}で{{food}}はどうでしょう</br>
     <a href="{{shop['urls']['pc']}}"> {{ shop["name"] }} </a> </br>
@@ -17,6 +21,6 @@
 	<script>
 	  alert("エラー")
 	</script>
-  {% endif %}	
+  {% endif %}
 </body>
   
