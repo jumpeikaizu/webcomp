@@ -1,13 +1,18 @@
 body{
 	text-align:center;
 	background-color:aliceblue;
-	font-size:18pt;
+	font-size:14pt;
 	/* font-family:monospace; */
+}
+
+h1{
+	font-size:150%;
 }
 
 #head{
 	background-color:lavenderblush;
-	margin:0px;
+	padding:10px;
+	margin:-10px;
 }
 
 input{
