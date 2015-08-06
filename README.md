@@ -1,6 +1,6 @@
 # webcomp
 ## 食事提案サービス
--動作方法
-  '''bash
+* 動作方法
+  ```zsh
   python main.py
-  '''
+  ```
